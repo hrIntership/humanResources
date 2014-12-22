@@ -56,7 +56,7 @@ $('#typeSelect').change(function(event) {
 													<td>${skillsList.stringLevel}</td>
                                                
                               <td><a
-									href="${pageContext.request.contextPath}/skills/delete.html?personID=${personID} &idSkill=${skillsList.id}" >Edit</a>
+									href="${pageContext.request.contextPath}/skills/delete.html?personID=${personID} &idSkill=${skillsList.id}" >Delete</a>
                                                   </td>
                                                       
 												</tr>

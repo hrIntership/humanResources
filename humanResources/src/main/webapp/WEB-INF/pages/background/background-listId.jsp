@@ -37,7 +37,7 @@
 								<td>${background.dateTo}</td>
 								<td>${background.comment}</td>
 								<td><a
-									href="${pageContext.request.contextPath}/background/edit/${background.idBackground}.html">Edit</a><br />
+									href="${pageContext.request.contextPath}/background/edit.html?idBackground=${background.idBackground}">Edit</a><br />
 								</td>
 							</tr>
 						</c:forEach>

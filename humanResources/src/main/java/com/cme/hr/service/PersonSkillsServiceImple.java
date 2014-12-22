@@ -57,6 +57,7 @@ public class PersonSkillsServiceImple implements PersonSkillsService {
 	}
 
 	@Override
+	@Transactional
 	public List<PersonSkills> findByidPersonOrderByType(Integer idPerson) {
 		// TODO Auto-generated method stub
 		return null;

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cme.hr.exception.StaffNotFound;
-import com.cme.hr.model.Person;
 import com.cme.hr.model.Staff;
 import com.cme.hr.repository.StaffRepository;
 
@@ -67,6 +66,13 @@ public class StaffServiceImpl implements StaffService {
 		updatedStaff.setHealthInsurance(staff.getHealthInsurance());
 
 		return updatedStaff;
+	}
+
+	@Override
+	@Transactional
+	public Staff findByIdPerson(int idPerson) {
+		// TODO Auto-generated method stub
+		return staffRepository.findOne(idPerson) ;
 	}
 
 }

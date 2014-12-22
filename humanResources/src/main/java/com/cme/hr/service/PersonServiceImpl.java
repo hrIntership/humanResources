@@ -75,7 +75,6 @@ public class PersonServiceImpl implements PersonService {
 		updatedPerson.setMaritalStatus(person.getMaritalStatus());
 		updatedPerson.setNationality(person.getNationality());
 		updatedPerson.setBirthdate(person.getBirthdate());
-
 		updatedPerson.setAddress1(person.getAddress1());
 		updatedPerson.setAddress2(person.getAddress2());
 		updatedPerson.setCity(person.getCity());

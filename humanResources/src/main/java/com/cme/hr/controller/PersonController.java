@@ -75,7 +75,7 @@ public class PersonController {
 			BindingResult result, final RedirectAttributes redirectAttributes,
 			HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-          System.out.println("\n\n\n\ncityyyyyyyyyyyyyyyyyyy"+person.getCity());
+       
 		if (result.hasErrors()) {
 			System.out.println("soy el error " + result.toString());
 			ModelAndView mav = new ModelAndView("person-new", "person", person);
@@ -102,25 +102,23 @@ public class PersonController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/edit/{idPerson}", method = RequestMethod.GET)
-	public ModelAndView editPersonPage(@PathVariable Integer idPerson,
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView editPersonPage(
 			HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ModelAndView mav = new ModelAndView("person-edit");
-
-		Person person = personService.findById(idPerson);
+		String idPerson = request.getParameter("personID");
+		Person person = personService.findById(Integer.valueOf(idPerson));
 		initSelect(mav);
 		mav.addObject("person", person);
 		return mav;
 	}
 
-	@RequestMapping(value = "/edit/{idPerson}", method = RequestMethod.POST)
-	public ModelAndView editPerson(@ModelAttribute @Valid Person person,
-			BindingResult result, @PathVariable Integer idPerson,
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public ModelAndView editPerson(@ModelAttribute Person person,
+			BindingResult result, 
 			final RedirectAttributes redirectAttributes) throws PersonNotFound {
-
-		if (result.hasErrors())
-			return new ModelAndView("person-edit");
+	
 
 		ModelAndView mav = new ModelAndView("redirect:/person/list.html");
 		String message = "Person was successfully updated.";
@@ -135,13 +133,10 @@ public class PersonController {
 	public ModelAndView deletePerson(@PathVariable Integer idPerson,
 			final RedirectAttributes redirectAttributes) throws PersonNotFound {
 
-		ModelAndView mav = new ModelAndView("redirect:/index.html");
+		ModelAndView mav = new ModelAndView("redirect:/person/list.html");
 
 		Person person = personService.delete(idPerson);
-		String message = "The person " + person.getLastname() + ","
-				+ person.getFirstname() + " was successfully deleted.";
-
-		redirectAttributes.addFlashAttribute("message", message);
+		
 		return mav;
 	}
 //-------------------- select ----------------------------------------------

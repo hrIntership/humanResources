@@ -3,70 +3,68 @@ package com.cme.hr.model;
 import java.sql.Blob;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "person")
-@Inheritance(strategy=InheritanceType.JOINED)
 public class Person {
 
 	@Id
 	@GeneratedValue
-	protected Integer idPerson;
-
-    @Lob
-    protected Blob photograph;
-
-	protected String firstname;
-
-	protected String middlename;
-
-	protected String lastname;
-
-	protected String idType;
-
-	protected Integer idNumber;
-
-	protected String cuil;
-
-	protected String gender;
-
-	protected String maritalStatus;
-
-	protected String nationality;
-
-	@Column(name = "birthDate")
-	protected String birthdate;
-
-	protected String address1;
-
-	protected String address2;
-
-	protected Integer city;
-
-	protected String province;
-
-	protected Integer zipCode;
-
-	protected Integer country;
-
-	protected String phone;
-
-	protected String movile;
+	private Integer idPerson;
 	
-	protected String workphone;
+	private Blob photograph;
 
-	protected String email;
+	private String firstname;
 
-	protected String workemail;
+	private String middlename;
 
-	protected String state;
+	private String lastname;
+
+	private String idType;
+
+	private Integer idNumber;
+
+	private String cuil;
+
+	private String gender;
+
+	private String maritalStatus;
+
+	private  String nationality;
+	
+
+	
+	@Column(name = "birthDate")
+	private String birthdate;
+
+	private String address1;
+
+	private String address2;
+
+	private Integer city;
+
+	private String province;
+
+	private Integer zipCode;
+
+	private Integer country;
+
+	private String phone;
+
+	private String movile;
+	
+	private String workphone;
+
+	private String email;
+
+	private String workemail;
+
+	private String state;
 
 	public Integer getIdPerson() {
 		return idPerson;

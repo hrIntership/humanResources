@@ -34,7 +34,7 @@
 								<td>${staff.idPerson}</td>
 								<td>${staff.firstname}${staff.middlename} ${staff.lastname}</td>
 								<td><a
-									href="${pageContext.request.contextPath}/staff/listId/.html?personID=${staff.idPerson}">Details</a><br />
+									href="${pageContext.request.contextPath}/staff/listId.html?personID=${staff.idPerson}">Details</a><br />
 								</td>
 								<td><a
 									href="${pageContext.request.contextPath}/bCheck/list/${staff.idPerson}.html">Details</a><br />

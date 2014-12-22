@@ -33,8 +33,9 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="staff" items="${staffList}">
+						
 							<tr>
+							
 								<td>${staff.idPerson}</td>
 								<td>${staff.dateFrom}</td>
 								<td>${staff.dateTo}</td>
@@ -48,18 +49,14 @@
 									href="${pageContext.request.contextPath}/staff/edit/${staff.idPerson}.html">Edit</a><br />
 								</td>
 							</tr>
-						</c:forEach>
+						
 					</tbody>
 				</table>
 			</div>
 		</div>
-	<!--  	<form:form method="POST" commandName="staff" id=""
-						action="${pageContext.request.contextPath}/staff/create.html">
-						<input type="hidden" name="personID" value="${personID}">
-        </form:form>-->	
-		<input type="hidden" name="personID" value="${personID}">
+	
 					<input type=button class="btn btn-primary" onClick="location.href='${pageContext.request.contextPath}/staff/create.html?personID=${personID}'"  value='ADD'>
-	</div>
+	  </div>
 	<!-- /.row -->
 
 </div>

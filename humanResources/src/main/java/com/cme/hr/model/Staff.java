@@ -1,14 +1,21 @@
 package com.cme.hr.model;
 
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="staff")
-@PrimaryKeyJoinColumn(name="idPerson")
-public class Staff extends Person{
+public class Staff {
 
+	@Id
+	@GeneratedValue
+    private Integer idStaff; 
+    
+
+	private Integer idPerson;
+	
 	private String dateFrom;
 
 	private String dateTo;
@@ -24,9 +31,21 @@ public class Staff extends Person{
 	private String category;
 	
 	private String healthInsurance;
+	
+	public Integer getIdStaff() {
+		return idStaff;
+	}
 
-	public Staff() {
-		super();
+	public void setIdStaff(Integer idStaff) {
+		this.idStaff = idStaff;
+	}
+
+	public Integer getIdPerson() {
+		return idPerson;
+	}
+
+	public void setIdPerson(Integer idPerson) {
+		this.idPerson = idPerson;
 	}
 
 	public String getDateFrom() {

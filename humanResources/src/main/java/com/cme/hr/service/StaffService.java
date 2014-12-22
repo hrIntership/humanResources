@@ -13,5 +13,6 @@ public interface StaffService {
 	public List<Staff> findAll();
 	public Staff update(Staff staff) throws StaffNotFound;
 	public Staff findById(int id);
+	public Staff findByIdPerson(int idPerson);
 
 }

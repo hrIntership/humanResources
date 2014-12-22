@@ -5,10 +5,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%
-	HttpSession ses = request.getSession();
-	Integer sessionIdPerson = (Integer) ses.getAttribute("id_Person");
-%>
 
 
 
@@ -25,7 +21,7 @@
 		action="${pageContext.request.contextPath}/staff/create.html">
 
 
-		<form:input type="hidden" path="idPerson" value='<%=sessionIdPerson%>' />
+		<form:input type="hidden" path="idPerson" value="${personID}" />
 
 		<div class="row">
 			<form:label path="dateFrom">date From</form:label>

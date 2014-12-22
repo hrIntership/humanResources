@@ -32,11 +32,9 @@
 								<td>${person.firstname}</td>
 								<td>${person.idNumber}</td>
 								<td><a
-									href="${pageContext.request.contextPath}/person/edit/${person.idPerson}.html" >Edit</a><br />
+									href="${pageContext.request.contextPath}/person/edit.html?personID=${person.idPerson}" >Edit</a><br />
 
-									<a
-									href="${pageContext.request.contextPath}/person/edit.html?id=${person.idPerson}">Ver
-										ficha del cliente</a><br /> <a
+								 <a
 									href="${pageContext.request.contextPath}/person/delete/${person.idPerson}.html">Delete</a><br />
 
 								</td>
@@ -47,7 +45,7 @@
 									
 									</td>
 									<td><a
-									href="${pageContext.request.contextPath}/skills/create.html?personID=${person.idPerson}">Skill-News</a><br />
+									href="${pageContext.request.contextPath}/skills/create.html?personID=${person.idPerson}">Skill</a><br />
 							
 							</tr>
 						</c:forEach>

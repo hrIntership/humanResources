@@ -64,6 +64,11 @@ public class BackgroundServiceImpl implements BackgroundService {
 			throw new BackgroundNotFound();
 
 		updatedBackground.setIdBackground(background.getIdBackground());
+		updatedBackground.setComment(background.getComment());
+		updatedBackground.setCompany(background.getCompany());
+		updatedBackground.setDateFrom(background.getDateFrom());
+		updatedBackground.setJobTitle(background.getJobTitle());
+		updatedBackground.setDateTo(background.getDateTo());
 		
 		return updatedBackground;
 	}

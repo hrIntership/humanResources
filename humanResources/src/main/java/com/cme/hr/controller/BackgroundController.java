@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,7 +24,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import com.cme.hr.exception.BackgroundNotFound;
-import com.cme.hr.model.BCheck;
 import com.cme.hr.model.Background;
 import com.cme.hr.service.BackgroundService;
 import com.cme.hr.service.PersonService;
@@ -104,31 +102,40 @@ public class BackgroundController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public ModelAndView editBackgroundPage(@PathVariable Integer id) {
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView editBackgroundPage(HttpServletRequest request,
+			   HttpServletResponse response) throws ServletException, IOException{
+
+		String id = request.getParameter("idBackground");
 		ModelAndView mav = new ModelAndView("background-edit");
-		Background background = backgroundService.findById(id);
+		Background background = backgroundService.findById(Integer.valueOf(id));
+		mav.addObject("idBackground", id);
 		mav.addObject("background", background);
 		return mav;
 	}
 
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ModelAndView editBackground(
-			@ModelAttribute @Valid Background background, BindingResult result,
-			@PathVariable Integer id,
-			final RedirectAttributes redirectAttributes)
+			@ModelAttribute Background background, BindingResult result,HttpServletRequest request,
+			   HttpServletResponse response,
+final RedirectAttributes redirectAttributes)
 			throws BackgroundNotFound {
 
 		if (result.hasErrors())
 			return new ModelAndView("background-edit");
+		
+		String id = request.getParameter("idBackground");
 
+		System.out.println("\n\n\nasdfasdfasdfasfdasd");
 		ModelAndView mav = new ModelAndView("redirect:/index.html");
 		String message = "Background was successfully updated.";
-
+		background.setIdBackground(Integer.valueOf(id));
 		backgroundService.update(background);
-
 		redirectAttributes.addFlashAttribute("message", message);
+		
 		return mav;
+
+
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

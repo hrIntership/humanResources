@@ -49,31 +49,21 @@ public class StaffController extends HttpServlet{
 			HttpServletResponse response) throws ServletException, IOException {
 		Staff staff = new Staff();
 		ModelAndView mav = new ModelAndView("staff-new", "staff", staff);
-
+		String idPerson = request.getParameter("personID");
+		mav.addObject("personID",idPerson );
 		return mav;
 	}
 	
 	@RequestMapping(value="/create", method=RequestMethod.POST)
-	public ModelAndView createNewStaff(@ModelAttribute @Valid Staff staff,
+	public ModelAndView createNewStaff(@ModelAttribute  Staff staff,
 			BindingResult result,
 			final RedirectAttributes redirectAttributes,
 			HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException{
-   
-		if (result.hasErrors()){
-		System.out.println("soy el error "+ result.toString());
-			 ModelAndView mav = new ModelAndView("staff-new","staff",staff);
-			 return mav;
-		}
-
-		
+     
 		 staffService.create(staff);
-		 Integer p= staff.getIdPerson();
-		 System.out.println("\n\n\nesta es la session"+p);
-		 HttpSession session = request.getSession(true);
-         session.setAttribute("id_Person", p);
-
-		ModelAndView mav = new ModelAndView("redirect:/staff/create.html");
+	
+		ModelAndView mav = new ModelAndView("redirect:/staff/list.html");
 	    
 		
 		return mav;		
@@ -83,20 +73,21 @@ public class StaffController extends HttpServlet{
 	public ModelAndView staffListPage() {
 		ModelAndView mav = new ModelAndView("staff-list");
 		String state = "internal";
-		List<Person> staffList = personService.findByState(state);
-		mav.addObject("staffList", staffList);
+		List<Person> staffList = personService.findByState(state); // trea una persona
+		mav.addObject("staffList", staffList); 
 
 		return mav;
 	}
 	
-	@RequestMapping(value = "/listId/{idPerson}", method = RequestMethod.GET)
+	@RequestMapping(value = "/listId", method = RequestMethod.GET)
 	public ModelAndView staffIdListPage(HttpServletRequest request,
 			   HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("staff-listId");
 		String idPerson = request.getParameter("personID");
-		System.out.println("\n\n\n mirameeeeeeeeee"+idPerson);
-		Staff staff = staffService.findById(Integer.parseInt(idPerson));
-	
+		Staff staff = staffService.findByIdPerson(Integer.parseInt(idPerson));
+		System.out.println("\n\n\n acaaa"+staff.getIdPerson());
+		System.out.println("\n\n\n acaaa"+staff.getDateFrom());
+		mav.addObject("personID",idPerson );
 		mav.addObject("staff", staff);
 		return mav;
 	}
@@ -137,8 +128,7 @@ public class StaffController extends HttpServlet{
 		ModelAndView mav = new ModelAndView("redirect:/index.html");
 
 		Staff staff = staffService.delete(idPerson);
-		String message = "The staff " + staff.getLastname() + ","
-				+ staff.getFirstname() + " was successfully deleted.";
+		String message = "The staff was successfully deleted.";
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
